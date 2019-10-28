@@ -1,54 +1,34 @@
+/* eslint-env node */
+
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module'
+    ecmaVersion: 2017,
+    sourceType: 'module',
   },
-  plugins: [
-    'ember'
-  ],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended'
-  ],
+  plugins: ['prettier', '@typescript-eslint'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/eslint-recommended', 'prettier'],
   env: {
-    browser: true
+    browser: true,
+    node: true,
   },
   rules: {
-    'ember/no-jquery': 'error'
+    'no-console': 'off',
+    'prettier/prettier': 'error',
   },
   overrides: [
-    // node files
     {
-      files: [
-        '.ember-cli.js',
-        '.eslintrc.js',
-        '.template-lintrc.js',
-        'ember-cli-build.js',
-        'index.js',
-        'testem.js',
-        'blueprints/*/index.js',
-        'config/**/*.js',
-        'tests/dummy/config/**/*.js'
-      ],
-      excludedFiles: [
-        'addon/**',
-        'addon-test-support/**',
-        'app/**',
-        'tests/dummy/app/**'
-      ],
-      parserOptions: {
-        sourceType: 'script'
+      files: ['**/*.ts'],
+      rules: {
+        'prefer-const': 'off',
+
+        // the TypeScript compiler already takes care of this and
+        // leaving it enabled results in false positives for interface imports
+        'no-dupe-class-members': 'off',
+        'no-unused-vars': 'off',
+        'no-undef': 'off',
       },
-      env: {
-        browser: false,
-        node: true
-      },
-      plugins: ['node'],
-      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
-        // add your custom rules and overrides for node files here
-      })
-    }
-  ]
+    },
+  ],
 };
