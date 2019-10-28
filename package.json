@@ -15,7 +15,7 @@
   "scripts": {
     "build": "rollup -c",
     "lint:hbs": "ember-template-lint .",
-    "lint:js": "eslint .",
+    "lint:js": "eslint . --ext=js,ts",
     "start": "ember serve",
     "test": "ember test",
     "prepublish": "rollup -c"

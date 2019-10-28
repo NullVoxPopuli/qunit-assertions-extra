@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-QUnit.assert.contains = function(source, sub, message) {
+QUnit.assert.contains = function(source: string, sub?: string, message?: string) {
   let trimmedSource = source.trim();
   this.pushResult({
     result: trimmedSource.includes(sub),
@@ -19,7 +19,7 @@ QUnit.assert.contains = function(source, sub, message) {
   });
 };
 
-QUnit.assert.notContains = function(source, sub, message) {
+QUnit.assert.notContains = function(source: string, sub?: string, message?: string) {
   let trimmedSource = source.trim();
   this.pushResult({
     result: !trimmedSource.includes(sub),
@@ -29,7 +29,7 @@ QUnit.assert.notContains = function(source, sub, message) {
   });
 };
 
-QUnit.assert.matches = function(source, regex, message) {
+QUnit.assert.matches = function(source: string, regex?: RegExp, message?: string) {
   this.pushResult({
     result: regex.test(source),
     actual: source,
@@ -38,7 +38,7 @@ QUnit.assert.matches = function(source, regex, message) {
   });
 };
 
-QUnit.assert.notMatches = function(source, regex, message) {
+QUnit.assert.notMatches = function(source: string, regex?: RegExp, message?: string) {
   this.pushResult({
     result: regex.test(source),
     actual: source,
@@ -46,4 +46,3 @@ QUnit.assert.notMatches = function(source, regex, message) {
     message: message || `expected ${source} to match ${regex}`,
   });
 };
-
