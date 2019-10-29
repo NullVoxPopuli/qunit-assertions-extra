@@ -1,6 +1,6 @@
 {
   "name": "qunit-assertions-extra",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Collection of helpful assertions for use with qunit",
   "keywords": [
     "ember-addon",
