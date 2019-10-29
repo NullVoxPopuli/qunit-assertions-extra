@@ -6,7 +6,7 @@ export default {
   external: ['qunit'],
   plugins: [
     typescript({
-      exclude: ['node_modules/**'],
+      exclude: ['node_modules/**/*'],
     }),
   ],
 

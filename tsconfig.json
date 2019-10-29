@@ -1,8 +1,18 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "lib": ["ES6", "DOM"],
-    "target": "es5"
+    "moduleResolution": "node",
+    "lib": ["esnext"],
+    "target": "es5",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["lib/*", "lib/**/*"]
+  "include": ["lib/*", "lib/**/*"],
+  "types": ["qunit"]
 }
