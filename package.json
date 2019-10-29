@@ -26,50 +26,23 @@
     "test": "ember test",
     "prepublish": "rollup -c"
   },
-  "dependencies": {
-    "ember-auto-import": "^1.5.3",
-    "ember-cli-babel": "^7.11.1"
-  },
   "peerDependencies": {
     "qunit": "^2.0.0"
   },
   "devDependencies": {
-    "@ember/edition-utils": "^1.1.1",
-    "@ember/optional-features": "^1.0.0",
-    "@ember/test-helpers": "^1.7.1",
-    "@glimmer/component": "^0.14.0-alpha.13",
     "@types/qunit": "^2.9.0",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
     "babel-eslint": "^10.0.3",
     "babel-preset-env": "^1.6.0",
-    "ember-cli": "~3.14.0-beta.2",
-    "ember-cli-dependency-checker": "^3.1.0",
-    "ember-cli-eslint": "^5.1.0",
-    "ember-cli-htmlbars": "^4.0.8",
-    "ember-cli-htmlbars-inline-precompile": "^3.0.0",
-    "ember-cli-inject-live-reload": "^2.0.1",
-    "ember-cli-typescript-blueprints": "^3.0.0",
-    "ember-cli-uglify": "^3.0.0",
-    "ember-disable-prototype-extensions": "^1.1.3",
-    "ember-export-application-global": "^2.0.0",
-    "ember-load-initializers": "^2.1.0",
-    "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-qunit": "^4.5.1",
-    "ember-resolver": "^5.3.0",
-    "ember-source": "~3.14.0-beta.1",
-    "ember-source-channel-url": "^2.0.1",
-    "ember-try": "^1.2.1",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-ember": "^7.1.0",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "lerna-changelog": "^0.8.0",
-    "loader.js": "^4.7.0",
     "prettier": "^1.18.2",
     "qunit": "^2.9.3",
-    "qunit-dom": "^0.9.0",
     "release-it": "^12.4.3",
     "release-it-lerna-changelog": "^1.0.3",
     "rollup": "^1.26.0",
@@ -78,13 +51,6 @@
   },
   "engines": {
     "node": "8.* || >= 10.*"
-  },
-  "ember-addon": {
-    "configPath": "tests/dummy/config",
-    "after": [
-      "ember-cli-qunit",
-      "ember-qunit"
-    ]
   },
   "release-it": {
     "plugins": {

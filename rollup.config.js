@@ -11,11 +11,11 @@ export default {
   ],
 
   output: {
-    // name: require('./package.json').name,
-    // format: 'umd',
+    name: require('./package.json').name,
+    format: 'umd',
     file: 'dist/index.js',
     // (amd, cjs, esm, iife, umd)
-    format: 'cjs',
+    // format: 'cjs',
     sourcemap: true,
   },
 };
