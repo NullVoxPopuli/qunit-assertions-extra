@@ -1,6 +1,6 @@
 {
   "name": "qunit-assertions-extra",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Collection of helpful assertions for use with qunit",
   "main": "dist/index.js",
   "keywords": [

@@ -1,3 +1,11 @@
+## v0.8.0 (2019-10-29)
+
+#### :rocket: Enhancement
+* Add assert.dom().hasValue() assertion ([@Turbo87](https://github.com/Turbo87))
+
+#### Committers: 1
+- Tobias Bieniek ([@Turbo87](https://github.com/Turbo87))
+
 * update readme (34908db)
 
 ## v0.6.0 (2019-10-29)
