@@ -16,6 +16,7 @@
     "test": "tests"
   },
   "scripts": {
+    "release": "release-it",
     "build": "rollup -c",
     "docs": "yarn build && documentation build dist/qunit-dom.js --config documentation.yml -f md -o API.md",
     "lint:hbs": "ember-template-lint .",
@@ -65,6 +66,8 @@
     "loader.js": "^4.7.0",
     "prettier": "^1.18.2",
     "qunit-dom": "^0.9.0",
+    "release-it": "^12.4.3",
+    "release-it-lerna-changelog": "^1.0.3",
     "rollup": "^1.26.0",
     "rollup-plugin-typescript2": "^0.25.1",
     "typescript": "^3.6.4"
@@ -78,6 +81,19 @@
       "ember-cli-qunit",
       "ember-qunit"
     ]
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md"
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true
+    }
   },
   "changelog": {
     "repo": "simplabs/qunit-dom",
