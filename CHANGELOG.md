@@ -1,3 +1,5 @@
+* update readme (34908db)
+
 ## v0.6.0 (2019-10-29)
 
 #### :house: Internal
