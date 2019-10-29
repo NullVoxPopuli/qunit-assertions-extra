@@ -4,9 +4,10 @@
   "description": "Collection of helpful assertions for use with qunit",
   "main": "dist/index.js",
   "keywords": [
-    "ember-addon",
     "qunit",
     "testing",
+    "assertions",
+    "assert",
     "extra"
   ],
   "repository": "https://github.com/NullVoxPopuli/qunit-assertions-extra",
@@ -23,7 +24,7 @@
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint . --ext=js,ts",
     "start": "ember serve",
-    "test": "ember test",
+    "test": "./tests/run-tests.sh",
     "prepublish": "rollup -c"
   },
   "peerDependencies": {
@@ -40,6 +41,7 @@
     "eslint-plugin-ember": "^7.1.0",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "execa": "^3.2.0",
     "lerna-changelog": "^0.8.0",
     "prettier": "^1.18.2",
     "qunit": "^2.9.3",

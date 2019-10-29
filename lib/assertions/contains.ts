@@ -1,14 +1,14 @@
-import { HasIncludes } from './-type-helpers';
+import { HasIncludes, Maybe } from './-type-helpers';
 
 export function install() {
   QUnit.assert.contains = function<A extends HasIncludes<B>, B>(
-    source: A,
-    sub?: B,
+    source?: Maybe<A>,
+    sub?: Maybe<B>,
     message?: string
   ) {
     let result = false;
 
-    if (sub) {
+    if (sub && source !== null && source !== undefined) {
       result = source.includes(sub);
     }
 
@@ -21,13 +21,13 @@ export function install() {
   };
 
   QUnit.assert.notContains = function<A extends HasIncludes<B>, B>(
-    source: A,
-    sub?: B,
+    source: Maybe<A>,
+    sub?: Maybe<B>,
     message?: string
   ) {
     let result = false;
 
-    if (sub) {
+    if (sub && source !== null && source !== undefined) {
       result = !source.includes(sub);
     }
 

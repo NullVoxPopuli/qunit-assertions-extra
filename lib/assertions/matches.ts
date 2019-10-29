@@ -1,6 +1,12 @@
+import { Maybe } from './-type-helpers';
+
 export function install() {
-  QUnit.assert.matches = function(source: string, regex?: RegExp, message?: string) {
-    let result = regex ? regex.test(source) : false;
+  QUnit.assert.matches = function(source?: Maybe<string>, regex?: Maybe<RegExp>, message?: string) {
+    let result = false;
+
+    if (source !== undefined && source !== null && regex) {
+      result = regex.test(source);
+    }
 
     this.pushResult({
       result,
@@ -10,8 +16,16 @@ export function install() {
     });
   };
 
-  QUnit.assert.notMatches = function(source: string, regex?: RegExp, message?: string) {
-    let result = regex ? !regex.test(source) : false;
+  QUnit.assert.notMatches = function(
+    source: Maybe<string>,
+    regex?: Maybe<RegExp>,
+    message?: string
+  ) {
+    let result = false;
+
+    if (source !== undefined && source !== null && regex) {
+      result = !regex.test(source);
+    }
 
     this.pushResult({
       result,

@@ -10,4 +10,3 @@ installExtras();
 setApplication(Application.create(config.APP));
 
 start();
-

@@ -4,7 +4,6 @@
 /dist/
 /tmp/
 
-
 # dependencies
 /bower_components/
 /node_modules/
@@ -16,11 +15,11 @@
 /connect.lock
 /coverage/
 /libpeerconnection.log
-npm-debug.log*
-testem.log
-yarn-error.log
+/npm-debug.log*
+/testem.log
+/yarn-error.log
 
-# test files
-/tests/fixtures/**/yarn.lock
-/tests/fixtures/**/node_modules/
-/tests/fixtures/**/dist/
+# ember-try
+/.node_modules.ember-try/
+/bower.json.ember-try
+/package.json.ember-try
