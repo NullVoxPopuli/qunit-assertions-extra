@@ -33,7 +33,7 @@ QUnit.assert.matches = function(source: string, regex?: RegExp, message?: string
   this.pushResult({
     result: regex.test(source),
     actual: source,
-    expected: regex,
+    expected: `${regex}`,
     message: message || `expected ${source} to match ${regex}`,
   });
 };
@@ -42,7 +42,7 @@ QUnit.assert.notMatches = function(source: string, regex?: RegExp, message?: str
   this.pushResult({
     result: regex.test(source),
     actual: source,
-    expected: regex,
+    expected: `${regex}`,
     message: message || `expected ${source} to match ${regex}`,
   });
 };
