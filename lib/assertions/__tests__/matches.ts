@@ -1,36 +1,31 @@
-import { contains, notContains } from '../contains';
+import { matches, notMatches } from '../matches';
 import { FakeAssert } from './-fake-assert';
 
 let scenarios = [
   // successes
-  ['hello', 'ello', true],
-  ['hello', 'he', true],
-  [['hello'], 'hello', true],
-  [['hello', 'there'], 'hello', true],
-  [[1, 4], 4, true],
+  ['hello', /hel/, true],
+  ['hello', /^he/, true],
   // failures
-  ['hello', 'there', false],
-  [['hello'], 'there', false],
-  [['hello', 'there'], 'general', false],
-  [[1, 4], 5, false],
+  ['hello', /there/, false],
+  ['hello there', /hello$/, false],
 ];
 
-describe('contains | notContains', () => {
+describe('(c|notC)ontains', () => {
   let assert: FakeAssert;
 
   beforeEach(() => {
     assert = new FakeAssert();
-    assert.contains = contains as any;
-    assert.notContains = notContains as any;
+    assert.matches = matches as any;
+    assert.notMatches = notMatches as any;
   });
 
-  describe('assert.contains', () => {
+  describe('assert.matches', () => {
     describe('results', () => {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
 
-        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, () => {
-          assert.contains(actual as any, expected);
+        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, () => {
+          assert.matches(actual as string, expected as RegExp);
 
           expect(assert.results.length).toEqual(1);
           expect(assert.results[0].result).toEqual(result);
@@ -41,15 +36,15 @@ describe('contains | notContains', () => {
     });
   });
 
-  describe('assert.notContains', () => {
+  describe('assert.notMatches', () => {
     describe('results', () => {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
-        // because notContains
+        // because notMatches
         result = !result;
 
-        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, () => {
-          assert.notContains(actual as any, expected);
+        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, () => {
+          assert.notMatches(actual as string, expected as RegExp);
 
           expect(assert.results.length).toEqual(1);
           expect(assert.results[0].result).toEqual(result);
