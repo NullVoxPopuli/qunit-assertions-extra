@@ -1,4 +1,9 @@
-import { contains, notContains } from '../contains';
+import {
+  contains,
+  notContains,
+  buildMissingIterableMessage,
+  buildMissingElementMessage,
+} from '../contains';
 import { FakeAssert } from './-fake-assert';
 
 let scenarios = [
@@ -38,6 +43,24 @@ describe('(c|notC)ontains', () => {
           expect(assert.results[0].message).toContain(actual);
         });
       }
+
+      test('message clearly states what was compared', () => {
+        assert.contains('hello there', 'there');
+
+        expect(assert.results[0].message).toEqual('expected hello there to contain there');
+      });
+
+      test('message clearly states that you should pass a result', () => {
+        assert.contains(null, 'there');
+
+        expect(assert.results[0].message).toEqual(buildMissingIterableMessage(null));
+      });
+
+      test('message clearly states that you should pass something to check inclusion for', () => {
+        assert.contains('hello there' as any, null);
+
+        expect(assert.results[0].message).toEqual(buildMissingElementMessage(null));
+      });
     });
   });
 
