@@ -1,9 +1,13 @@
-QUnit.assert.contains = function(source: string | string[], sub?: string, message?: string) {
-  let result = false;
+/* global QUnit */
 
-  if (typeof source === 'string') {
-    source = source.trim();
-  }
+import { HasIncludes } from './-type-helpers';
+
+QUnit.assert.contains = function<A extends HasIncludes<B>, B>(
+  source: A,
+  sub?: B,
+  message?: string
+) {
+  let result = false;
 
   if (sub) {
     result = source.includes(sub);
@@ -17,12 +21,12 @@ QUnit.assert.contains = function(source: string | string[], sub?: string, messag
   });
 };
 
-QUnit.assert.notContains = function(source: string | string[], sub?: string, message?: string) {
+QUnit.assert.notContains = function<A extends HasIncludes<B>, B>(
+  source: A,
+  sub?: B,
+  message?: string
+) {
   let result = false;
-
-  if (typeof source === 'string') {
-    source = source.trim();
-  }
 
   if (sub) {
     result = !source.includes(sub);

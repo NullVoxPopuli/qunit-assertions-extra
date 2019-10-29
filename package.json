@@ -2,6 +2,7 @@
   "name": "qunit-assertions-extra",
   "version": "0.5.0",
   "description": "Collection of helpful assertions for use with qunit",
+  "main": "dist/index.js",
   "keywords": [
     "ember-addon",
     "qunit",
@@ -19,7 +20,6 @@
   "scripts": {
     "release": "release-it -n",
     "build": "rollup -c",
-    "docs": "yarn build && documentation build dist/qunit-dom.js --config documentation.yml -f md -o API.md",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint . --ext=js,ts",
     "start": "ember serve",
@@ -27,8 +27,12 @@
     "prepublish": "rollup -c"
   },
   "dependencies": {
+    "ember-auto-import": "^1.5.3",
     "ember-cli-babel": "^7.11.1",
     "ember-cli-htmlbars": "^4.0.1"
+  },
+  "peerDependencies": {
+    "qunit": "^2.0.0"
   },
   "devDependencies": {
     "@ember/edition-utils": "^1.1.1",
@@ -66,6 +70,7 @@
     "lerna-changelog": "^0.8.0",
     "loader.js": "^4.7.0",
     "prettier": "^1.18.2",
+    "qunit": "^2.9.3",
     "qunit-dom": "^0.9.0",
     "release-it": "^12.4.3",
     "release-it-lerna-changelog": "^1.0.3",

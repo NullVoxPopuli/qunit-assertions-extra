@@ -1,3 +1,5 @@
+/* global QUnit */
+
 QUnit.assert.matches = function(source: string, regex?: RegExp, message?: string) {
   let result = regex ? regex.test(source) : false;
 

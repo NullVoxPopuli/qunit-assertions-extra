@@ -11,8 +11,8 @@ export default {
   ],
 
   output: {
-    file: 'dist/qunit-assertions-extra.js',
-    format: 'iife',
+    file: 'dist/index.js',
+    format: 'cjs',
     sourcemap: true,
   },
 };

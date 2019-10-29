@@ -3,7 +3,7 @@
     "declaration": true,
     "moduleResolution": "node",
     "lib": ["esnext"],
-    "target": "es5",
+    "target": "es2019",
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
@@ -11,7 +11,8 @@
     "alwaysStrict": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "noEmitOnError": false
   },
   "include": ["lib/*", "lib/**/*"],
   "types": ["qunit"]
