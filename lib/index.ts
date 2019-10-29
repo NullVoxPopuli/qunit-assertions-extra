@@ -1,8 +1,11 @@
 /* global QUnit */
 
-import './assertions/contains';
-import './assertions/matches';
+import { install as contains } from './assertions/contains';
+import { install as matches } from './assertions/matches';
 import { HasIncludes } from './assertions/-type-helpers';
+
+// required my ember-cli
+export const name = 'qunit-assertions-extra';
 
 declare global {
   interface Assert {
@@ -20,4 +23,9 @@ declare global {
     matches(source?: string | null, regex?: RegExp, message?: string): void;
     notMatches(source?: string | null, regex?: RegExp, message?: string): void;
   }
+}
+
+export function install() {
+  contains();
+  matches();
 }

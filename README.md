@@ -21,7 +21,9 @@ npm install --save-dev qunit-assertions-extra
 
 Then, wherever qunit tests are initialized, add
 ```ts
-import 'qunit-assertions-extra';
+import { install as installExtras } from 'qunit-assertions-extra';
+
+installExtras();
 ```
 
 This will also enable the tsserver to provide intellisense for `assert`.

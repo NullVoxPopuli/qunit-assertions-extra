@@ -3,10 +3,9 @@ import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
 import { start } from 'ember-qunit';
 
-// import * as QUnit from 'qunit';
+import { install as installExtras } from 'qunit-assertions-extra';
 
-// TypeScript users will need this
-// import 'qunit-assertions-extra';
+installExtras();
 
 setApplication(Application.create(config.APP));
 
