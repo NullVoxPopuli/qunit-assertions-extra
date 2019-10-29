@@ -1,7 +1,8 @@
 /* global QUnit */
 
-import { install as contains } from './assertions/contains';
-import { install as matches } from './assertions/matches';
+import './assertions/contains';
+import './assertions/matches';
+
 import { HasIncludes, Maybe } from './assertions/-type-helpers';
 
 declare global {
@@ -22,7 +23,3 @@ declare global {
   }
 }
 
-export function install() {
-  contains();
-  matches();
-}

@@ -21,14 +21,12 @@ npm install --save-dev qunit-assertions-extra
 
 Then, wherever qunit tests are initialized, add
 ```ts
-import { install as installExtras } from 'qunit-assertions-extra';
-
-installExtras();
+import 'qunit-assertions-extra';
 ```
 
 This will also enable the tsserver to provide intellisense for `assert`.
 
-Note: with ember projects, you'll want [ember-auto-import](https://github.com/ef4/ember-auto-import).
+Note: with ember projects, you'll want [ember-auto-import](https://github.com/ef4/ember-auto-import) and add the above import to your `tests/test-helper.js` file.
 
 Also, in
 
