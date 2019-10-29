@@ -26,9 +26,23 @@ import 'qunit-assertions-extra';
 
 This will also enable the tsserver to provide intellisense for `assert`.
 
-Note: with ember projects, you'll want [ember-auto-import](https://github.com/ef4/ember-auto-import) and add the above import to your `tests/test-helper.js` file.
+## Ember Projects
 
-Also, in
+Requirements: [ember-auto-import](https://github.com/ef4/ember-auto-import) and add the above import to your `tests/test-helper.js` file.
+
+Example:
+```js
+import Application from '../app';
+import config from '../config/environment';
+import { setApplication } from '@ember/test-helpers';
+import { start } from 'ember-qunit';
+
+import 'qunit-assertions-extra';
+
+setApplication(Application.create(config.APP));
+
+start();
+```
 
 
 
