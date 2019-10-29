@@ -22,4 +22,3 @@ declare global {
     notMatches(source?: Maybe<string>, regex?: Maybe<RegExp>, message?: string): void;
   }
 }
-
