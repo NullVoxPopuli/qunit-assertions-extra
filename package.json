@@ -11,6 +11,7 @@
   "repository": "https://github.com/NullVoxPopuli/qunit-assertions-extra",
   "license": "MIT",
   "author": "NullVoxPopuli",
+  "private": false,
   "directories": {
     "doc": "doc",
     "test": "tests"
