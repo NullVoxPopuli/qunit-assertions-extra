@@ -1,6 +1,11 @@
 import { Maybe } from './-type-helpers';
 
-QUnit.assert.matches = function(source?: Maybe<string>, regex?: Maybe<RegExp>, message?: string) {
+export function matches(
+  this: Assert,
+  source?: Maybe<string>,
+  regex?: Maybe<RegExp>,
+  message?: string
+) {
   let result = false;
 
   if (source !== undefined && source !== null && regex) {
@@ -13,9 +18,14 @@ QUnit.assert.matches = function(source?: Maybe<string>, regex?: Maybe<RegExp>, m
     expected: `${regex}`,
     message: message || `expected ${source} to match ${regex}`,
   });
-};
+}
 
-QUnit.assert.notMatches = function(source: Maybe<string>, regex?: Maybe<RegExp>, message?: string) {
+export function notMatches(
+  this: Assert,
+  source: Maybe<string>,
+  regex?: Maybe<RegExp>,
+  message?: string
+) {
   let result = false;
 
   if (source !== undefined && source !== null && regex) {
@@ -28,4 +38,4 @@ QUnit.assert.notMatches = function(source: Maybe<string>, regex?: Maybe<RegExp>,
     expected: `${regex}`,
     message: message || `expected ${source} to match ${regex}`,
   });
-};
+}

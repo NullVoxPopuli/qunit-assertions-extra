@@ -1,8 +1,9 @@
 import { HasIncludes, Maybe } from './-type-helpers';
 
-QUnit.assert.contains = function<A extends HasIncludes<B>, B>(
-  source?: Maybe<A>,
-  sub?: Maybe<B>,
+export function contains<Actual extends HasIncludes<ExpectedItem>, ExpectedItem>(
+  this: Assert,
+  source?: Maybe<Actual>,
+  sub?: Maybe<ExpectedItem>,
   message?: string
 ) {
   let result = false;
@@ -17,9 +18,10 @@ QUnit.assert.contains = function<A extends HasIncludes<B>, B>(
     expected: sub,
     message: message || `expected ${source} to contain ${sub}`,
   });
-};
+}
 
-QUnit.assert.notContains = function<A extends HasIncludes<B>, B>(
+export function notContains<A extends HasIncludes<B>, B>(
+  this: Assert,
   source?: Maybe<A>,
   sub?: Maybe<B>,
   message?: string
@@ -36,4 +38,4 @@ QUnit.assert.notContains = function<A extends HasIncludes<B>, B>(
     expected: sub,
     message: message || `expected ${source} to not contain ${sub}`,
   });
-};
+}
