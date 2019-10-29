@@ -11,8 +11,11 @@ export default {
   ],
 
   output: {
-    file: 'dist/qunit-assertions-extra.js',
-    format: 'iife',
+    name: require('./package.json').name,
+    format: 'umd',
+    file: 'dist/index.js',
+    // (amd, cjs, esm, iife, umd)
+    // format: 'cjs',
     sourcemap: true,
   },
 };

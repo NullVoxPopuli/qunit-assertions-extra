@@ -1,11 +1,13 @@
-QUnit.assert.contains = function(source: string | string[], sub?: string, message?: string) {
+import { HasIncludes, Maybe } from './-type-helpers';
+
+QUnit.assert.contains = function<A extends HasIncludes<B>, B>(
+  source?: Maybe<A>,
+  sub?: Maybe<B>,
+  message?: string
+) {
   let result = false;
 
-  if (typeof source === 'string') {
-    source = source.trim();
-  }
-
-  if (sub) {
+  if (sub && source !== null && source !== undefined) {
     result = source.includes(sub);
   }
 
@@ -17,14 +19,14 @@ QUnit.assert.contains = function(source: string | string[], sub?: string, messag
   });
 };
 
-QUnit.assert.notContains = function(source: string | string[], sub?: string, message?: string) {
+QUnit.assert.notContains = function<A extends HasIncludes<B>, B>(
+  source?: Maybe<A>,
+  sub?: Maybe<B>,
+  message?: string
+) {
   let result = false;
 
-  if (typeof source === 'string') {
-    source = source.trim();
-  }
-
-  if (sub) {
+  if (sub && source !== null && source !== undefined) {
     result = !source.includes(sub);
   }
 

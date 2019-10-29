@@ -1,29 +1,35 @@
 qunit-assertions-extra
 ==============================================================================
 
-[Short description of the addon.]
+A Collection of helpful assertions for use with qunit.
 
+```ts
+assert.contains('Hello there!', 'Hello');
+assert.contains([1, 3], 3);
 
-Compatibility
-------------------------------------------------------------------------------
-
-* Ember.js v3.4 or above
-* Ember CLI v2.13 or above
-* Node.js v8 or above
+assert.matches('Hello there!', /Hello/);
+```
 
 
 Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install qunit-assertions-extra
+yarn add --dev qunit-assertions-extra
+npm install --save-dev qunit-assertions-extra
 ```
 
+Then, wherever qunit tests are initialized, add
+```ts
+import 'qunit-assertions-extra';
+```
 
-Usage
-------------------------------------------------------------------------------
+This will also enable the tsserver to provide intellisense for `assert`.
 
-[Longer description of how to use the addon in apps.]
+Note: with ember projects, you'll want [ember-auto-import](https://github.com/ef4/ember-auto-import) and add the above import to your `tests/test-helper.js` file.
+
+Also, in
+
 
 
 Contributing
@@ -31,6 +37,11 @@ Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
+
+Prior Art
+------------------------------------------------------------------------------
+- [qunit-dom](https://github.com/simplabs/qunit-dom)
+  much of the config for this repo was taken from qunit-dom.
 
 License
 ------------------------------------------------------------------------------
