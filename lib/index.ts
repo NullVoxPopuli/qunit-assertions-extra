@@ -1,7 +1,7 @@
 /* global QUnit */
 
-import './assertions/contains';
-import './assertions/matches';
+import { contains, notContains } from './assertions/contains';
+import { matches, notMatches } from './assertions/matches';
 
 import { HasIncludes, Maybe } from './assertions/-type-helpers';
 
@@ -22,3 +22,8 @@ declare global {
     notMatches(source?: Maybe<string>, regex?: Maybe<RegExp>, message?: string): void;
   }
 }
+
+QUnit.assert.contains = contains;
+QUnit.assert.notContains = notContains;
+QUnit.assert.matches = matches;
+QUnit.assert.notMatches = notMatches;
