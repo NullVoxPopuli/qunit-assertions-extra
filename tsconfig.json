@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "declaration": true,
     "moduleResolution": "node",
     "lib": ["esnext"],
@@ -15,5 +16,6 @@
     "noEmitOnError": false
   },
   "include": ["lib/*", "lib/**/*"],
+  "exclude": ["__tests__"],
   "types": ["qunit"]
 }

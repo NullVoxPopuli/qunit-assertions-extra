@@ -20,19 +20,32 @@
   },
   "scripts": {
     "release": "release-it -n",
-    "build": "rollup -c",
-    "lint:hbs": "ember-template-lint .",
+    "build": "yarn build:js && yarn build:types",
+    "build:js": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly --skipLibCheck",
+    "build:js-for-tests": "babel lib --out-dir tmp/tests/lib --extensions '.ts' --plugins transform-es2015-modules-commonjs",
+    "build:tests": "babel tests --out-dir tmp/tests/tests --extensions '.ts' --plugins transform-es2015-modules-commonjs",
     "lint:js": "eslint . --ext=js,ts",
+    "lint:types": "tsc --noEmit --skipLibCheck",
     "start": "ember serve",
     "test": "yarn test:unit && yarn test:ember",
-    "test:unit": "jest",
-    "test:ember": "./tests/run-tests.sh",
+    "test:unit": "rm -rf tmp; yarn build:js-for-tests && yarn build:tests && qunit tmp/tests/**/*-test.js",
+    "test:ember": "./smoke-tests/run-tests.sh",
     "prepublish": "rollup -c"
   },
   "peerDependencies": {
     "qunit": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@babel/register": "^7.6.2",
+    "@types/ember-qunit": "^3.4.7",
     "@types/jest": "^24.0.20",
     "@types/qunit": "^2.9.0",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
@@ -45,15 +58,15 @@
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "execa": "^3.2.0",
-    "jest": "^24.9.0",
     "lerna-changelog": "^0.8.0",
     "prettier": "^1.18.2",
     "qunit": "^2.9.3",
     "release-it": "^12.4.3",
     "release-it-lerna-changelog": "^1.0.3",
     "rollup": "^1.26.0",
-    "rollup-plugin-typescript2": "^0.25.1",
-    "ts-jest": "^24.1.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "ts-node": "^8.4.1",
     "typescript": "^3.6.4"
   },
   "engines": {
@@ -81,14 +94,6 @@
       "documentation": ":memo: Documentation",
       "internal": ":house: Internal"
     }
-  },
-  "jest": {
-    "testRegex": "(/__tests__/[^-]*)\\.[jt]sx?$",
-    "preset": "ts-jest",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/dist/"
-    ]
   },
   "volta": {
     "node": "12.13.0",

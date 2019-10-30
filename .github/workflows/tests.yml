@@ -18,6 +18,8 @@ jobs:
       run: yarn install
     - name: Linting
       run: yarn lint:js
+    - name: Type Safety
+      run: yarn lint:types
 
   test:
     name: Testing
