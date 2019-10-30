@@ -1,3 +1,11 @@
+## v0.8.1 (2019-10-30)
+
+#### :rocket: Enhancement
+* Add assert.dom().hasClass() assertion ([@Turbo87](https://github.com/Turbo87))
+
+#### Committers: 1
+- Tobias Bieniek ([@Turbo87](https://github.com/Turbo87))
+
 ## v0.8.0 (2019-10-29)
 
 #### :rocket: Enhancement
