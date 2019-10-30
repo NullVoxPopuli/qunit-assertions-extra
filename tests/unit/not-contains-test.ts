@@ -1,41 +1,39 @@
 import { module, test } from 'qunit';
 import '../../lib/index';
-
+import { assertFor, FakeAssert } from '../helpers';
 import {
   buildMissingIterableMessage,
   buildMissingElementMessage,
-  contains,
+  notContains,
 } from '../../lib/assertions/contains';
-import { FakeAssert, assertFor } from '../helpers';
 
 type Scenario = [string | string[] | number[], string | number];
 
 let scenarios: Scenario[] = [
-  ['hello', 'ello'],
-  ['hello', 'he'],
-  [['hello'], 'hello'],
-  [['hello', 'there'], 'hello'],
-  [[1, 4], 4],
+  ['hello', 'there'],
+  [['hello'], 'there'],
+  [['hello', 'there'], 'general'],
+  [[1, 4], 5],
 ];
 
-module('contains', function() {
+module('notContains', function() {
   for (let scenario of scenarios) {
     let [actual, expected] = scenario;
 
-    module(`assert.contains("${actual}", "${expected}")`, function() {
+    module(`assert.notContains("${actual}", "${expected}")`, function() {
       test(`integration`, function(assert) {
-        assert.contains(actual, expected);
+        assert.notContains(actual, expected);
       });
 
       module('result', function(hooks) {
         let fakeAssert: FakeAssert;
 
         hooks.beforeEach(function() {
-          fakeAssert = assertFor(contains);
+          fakeAssert = assertFor(notContains);
         });
 
-        test(`is ${expected} contained in ${actual}?`, function(assert: Assert) {
-          fakeAssert.contains(actual, expected);
+        test(`is ${expected} not contained in ${actual}?`, function(assert: Assert) {
+          fakeAssert.notContains(actual, expected);
 
           assert.equal(fakeAssert.results.length, 1);
           assert.contains(fakeAssert.results[0].message, expected);
@@ -49,23 +47,23 @@ module('contains', function() {
     let fakeAssert: FakeAssert;
 
     hooks.beforeEach(function() {
-      fakeAssert = assertFor(contains);
+      fakeAssert = assertFor(notContains);
     });
 
     test('message clearly states what was compared', function(assert) {
-      fakeAssert.contains('hello there', 'there');
+      fakeAssert.notContains('hello there', '1111');
 
-      assert.equal(fakeAssert.results[0].message, 'expected hello there to contain there');
+      assert.equal(fakeAssert.results[0].message, 'expected hello there to not contain 1111');
     });
 
     test('message clearly states that you should pass a result', function(assert) {
-      fakeAssert.contains(null, 'there');
+      fakeAssert.notContains(null, 'there');
 
       assert.equal(fakeAssert.results[0].message, buildMissingIterableMessage(null));
     });
 
     test('message clearly states that you should pass something to check inclusion for', function(assert) {
-      fakeAssert.contains('hello there' as any, null);
+      fakeAssert.notContains('hello there' as any, null);
 
       assert.equal(fakeAssert.results[0].message, buildMissingElementMessage(null));
     });

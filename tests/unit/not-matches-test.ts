@@ -2,29 +2,29 @@ import { module, test } from 'qunit';
 import '../../lib/index';
 
 import { assertFor, FakeAssert } from '../helpers';
-import { matches } from '../../lib/assertions/matches';
+import { notMatches } from '../../lib/assertions/matches';
 
 type Scenario = [string, RegExp];
-let scenarios: Scenario[] = [['hello', /hel/], ['hello', /^he/], ['hello there', /\w there/]];
+let scenarios: Scenario[] = [['hello', /there/], ['hello there', /hello$/]];
 
-module('matches', function() {
+module('notMatches', function() {
   for (let scenario of scenarios) {
     let [actual, expected] = scenario;
 
-    module(`assert.matches("${actual}", ${expected})`, function() {
+    module(`assert.notMatches("${actual}", ${expected})`, function() {
       test(`integration`, function(assert) {
-        assert.matches(actual, expected);
+        assert.notMatches(actual, expected);
       });
 
       module('result', function(hooks) {
         let fakeAssert: FakeAssert;
 
         hooks.beforeEach(function() {
-          fakeAssert = assertFor(matches);
+          fakeAssert = assertFor(notMatches);
         });
 
-        test(`does ${expected} match ${actual}?`, function(assert) {
-          fakeAssert.matches(actual, expected);
+        test(`does ${expected} not match ${actual}?`, function(assert) {
+          fakeAssert.notMatches(actual, expected);
 
           assert.equal(fakeAssert.results.length, 1);
           assert.contains(fakeAssert.results[0].message, `${expected}`);

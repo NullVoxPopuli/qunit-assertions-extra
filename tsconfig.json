@@ -15,5 +15,6 @@
     "noEmitOnError": false
   },
   "include": ["lib/*", "lib/**/*"],
+  "exclude": ["__tests__"],
   "types": ["qunit"]
 }

@@ -1,4 +1,3 @@
-// import typescript from 'rollup-plugin-typescript2';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 
@@ -10,9 +9,6 @@ export default {
   external: ['qunit'],
   plugins: [
     resolve({ extensions }),
-    // typescript({
-    //   exclude: ['node_modules/**/*', 'lib/**/__tests__/**', 'lib/**/*.test.ts'],
-    // }),
     babel({
       extensions,
       include: ['lib/**/*'],

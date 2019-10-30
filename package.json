@@ -23,11 +23,13 @@
     "build": "yarn build:js && yarn build:types",
     "build:js": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly",
+    "build:js-for-tests": "babel lib --out-dir tmp/tests/lib --extensions '.ts' --plugins transform-es2015-modules-commonjs",
+    "build:tests": "babel tests --out-dir tmp/tests/tests --extensions '.ts' --plugins transform-es2015-modules-commonjs",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint . --ext=js,ts",
     "start": "ember serve",
     "test": "yarn test:unit && yarn test:ember",
-    "test:unit": "qunit --require @babel/register tests/**/*-test.ts",
+    "test:unit": "rm -rf tmp; yarn build:js-for-tests && yarn build:tests && qunit tmp/tests/**/*-test.js",
     "test:ember": "./smoke-tests/run-tests.sh",
     "prepublish": "rollup -c"
   },
@@ -35,9 +37,11 @@
     "qunit": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-typescript": "^7.6.0",
     "@babel/register": "^7.6.2",
