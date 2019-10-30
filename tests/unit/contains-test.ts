@@ -19,56 +19,54 @@ let scenarios = [
   [[1, 4], 5, false],
 ];
 
-module('(c|notC)ontains', () => {
-  module('assert.contains', () => {
-    module('results', () => {
+module('(c|notC)ontains', function() {
+  module('assert.contains', function() {
+    module('results', function() {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
 
-        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, (assert: Assert) => {
+        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, function(assert) {
           assert.contains(actual as any, expected);
 
-          expect(assert.results.length).toEqual(1);
-          expect(assert.results[0].result).toEqual(result);
-          expect(assert.results[0].message).toContain(expected);
-          expect(assert.results[0].message).toContain(actual);
+          assert.equal(assert.results.length, 1);
+          assert.contains(assert.results[0].message, expected);
+          assert.contains(assert.results[0].message, actual);
         });
       }
 
-      test('message clearly states what was compared', assert => {
+      test('message clearly states what was compared', function(assert) {
         assert.contains('hello there', 'there');
 
         expect(assert.results[0].message).toEqual('expected hello there to contain there');
       });
 
-      test('message clearly states that you should pass a result', assert => {
+      test('message clearly states that you should pass a result', function(assert) {
         assert.contains(null, 'there');
 
-        expect(assert.results[0].message).toEqual(buildMissingIterableMessage(null));
+        assert.equal(assert.results[0].message, buildMissingIterableMessage(null));
       });
 
-      test('message clearly states that you should pass something to check inclusion for', () => {
+      test('message clearly states that you should pass something to check inclusion for', function(assert) {
         assert.contains('hello there' as any, null);
 
-        expect(assert.results[0].message).toEqual(buildMissingElementMessage(null));
+        assert.equal(assert.results[0].message, buildMissingElementMessage(null));
       });
     });
   });
 
-  module('assert.notContains', () => {
-    module('results', () => {
+  module('assert.notContains', function() {
+    module('results', function() {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
         // because notContains
         result = !result;
 
-        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, assert => {
+        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, function(assert) {
           assert.notContains(actual as any, expected);
 
-          expect(assert.results.length).toEqual(1);
-          expect(assert.results[0].result).toEqual(result);
-          expect(assert.results[0].message).toContain(expected);
-          expect(assert.results[0].message).toContain(actual);
+          assert.equal(assert.results.length, 1);
+          assert.contains(assert.results[0].message, expected);
+          assert.contains(assert.results[0].message, actual);
         });
       }
     });

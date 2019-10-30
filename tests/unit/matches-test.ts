@@ -9,38 +9,36 @@ let scenarios = [
   ['hello there', /hello$/, false],
 ];
 
-module('(c|notC)ontains', () => {
-  module('assert.matches', () => {
-    module('results', () => {
+module('(c|notC)ontains', function() {
+  module('assert.matches', function() {
+    module('results', function() {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
 
-        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, () => {
+        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, function(assert) {
           assert.matches(actual as string, expected as RegExp);
 
-          expect(assert.results.length).toEqual(1);
-          expect(assert.results[0].result).toEqual(result);
-          expect(assert.results[0].message).toContain(expected);
-          expect(assert.results[0].message).toContain(actual);
+          assert.equal(assert.results.length, 1);
+          assert.contains(assert.results[0].message, expected);
+          assert.contains(assert.results[0].message, actual);
         });
       }
     });
   });
 
-  module('assert.notMatches', () => {
-    module('results', () => {
+  module('assert.notMatches', function() {
+    module('results', function() {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
         // because notMatches
         result = !result;
 
-        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, assert => {
+        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, function(assert) {
           assert.notMatches(actual as string, expected as RegExp);
 
-          expect(assert.results.length).toEqual(1);
-          expect(assert.results[0].result).toEqual(result);
-          expect(assert.results[0].message).toContain(expected);
-          expect(assert.results[0].message).toContain(actual);
+          assert.equal(assert.results.length, 1);
+          assert.contains(assert.results[0].message, expected);
+          assert.contains(assert.results[0].message, actual);
         });
       }
     });
