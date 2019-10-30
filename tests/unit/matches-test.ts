@@ -1,5 +1,4 @@
-import { matches, notMatches } from '../matches';
-import { FakeAssert } from './-fake-assert';
+import { module, test } from 'qunit';
 
 let scenarios = [
   // successes
@@ -10,17 +9,9 @@ let scenarios = [
   ['hello there', /hello$/, false],
 ];
 
-describe('(c|notC)ontains', () => {
-  let assert: FakeAssert;
-
-  beforeEach(() => {
-    assert = new FakeAssert();
-    assert.matches = matches as any;
-    assert.notMatches = notMatches as any;
-  });
-
-  describe('assert.matches', () => {
-    describe('results', () => {
+module('(c|notC)ontains', () => {
+  module('assert.matches', () => {
+    module('results', () => {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
 
@@ -36,14 +27,14 @@ describe('(c|notC)ontains', () => {
     });
   });
 
-  describe('assert.notMatches', () => {
-    describe('results', () => {
+  module('assert.notMatches', () => {
+    module('results', () => {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
         // because notMatches
         result = !result;
 
-        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, () => {
+        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, assert => {
           assert.notMatches(actual as string, expected as RegExp);
 
           expect(assert.results.length).toEqual(1);

@@ -1,10 +1,9 @@
+import { module, test } from 'qunit';
+
 import {
-  contains,
-  notContains,
   buildMissingIterableMessage,
   buildMissingElementMessage,
-} from '../contains';
-import { FakeAssert } from './-fake-assert';
+} from '../../lib/assertions/contains';
 
 let scenarios = [
   // successes
@@ -20,21 +19,13 @@ let scenarios = [
   [[1, 4], 5, false],
 ];
 
-describe('(c|notC)ontains', () => {
-  let assert: FakeAssert;
-
-  beforeEach(() => {
-    assert = new FakeAssert();
-    assert.contains = contains as any;
-    assert.notContains = notContains as any;
-  });
-
-  describe('assert.contains', () => {
-    describe('results', () => {
+module('(c|notC)ontains', () => {
+  module('assert.contains', () => {
+    module('results', () => {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
 
-        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, () => {
+        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, (assert: Assert) => {
           assert.contains(actual as any, expected);
 
           expect(assert.results.length).toEqual(1);
@@ -44,13 +35,13 @@ describe('(c|notC)ontains', () => {
         });
       }
 
-      test('message clearly states what was compared', () => {
+      test('message clearly states what was compared', assert => {
         assert.contains('hello there', 'there');
 
         expect(assert.results[0].message).toEqual('expected hello there to contain there');
       });
 
-      test('message clearly states that you should pass a result', () => {
+      test('message clearly states that you should pass a result', assert => {
         assert.contains(null, 'there');
 
         expect(assert.results[0].message).toEqual(buildMissingIterableMessage(null));
@@ -64,14 +55,14 @@ describe('(c|notC)ontains', () => {
     });
   });
 
-  describe('assert.notContains', () => {
-    describe('results', () => {
+  module('assert.notContains', () => {
+    module('results', () => {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
         // because notContains
         result = !result;
 
-        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, () => {
+        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, assert => {
           assert.notContains(actual as any, expected);
 
           expect(assert.results.length).toEqual(1);
