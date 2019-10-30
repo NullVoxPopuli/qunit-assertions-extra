@@ -1,4 +1,5 @@
 import { module, test } from 'qunit';
+import '../../lib/index';
 
 import {
   buildMissingIterableMessage,
@@ -25,7 +26,9 @@ module('(c|notC)ontains', function() {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
 
-        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, function(assert) {
+        test(`is ${expected}${
+          result ? ' ' : ' not '
+        }contained in ${actual}?`, function(assert: any) {
           assert.contains(actual as any, expected);
 
           assert.equal(assert.results.length, 1);
@@ -34,19 +37,19 @@ module('(c|notC)ontains', function() {
         });
       }
 
-      test('message clearly states what was compared', function(assert) {
+      test('message clearly states what was compared', function(assert: any) {
         assert.contains('hello there', 'there');
 
         expect(assert.results[0].message).toEqual('expected hello there to contain there');
       });
 
-      test('message clearly states that you should pass a result', function(assert) {
+      test('message clearly states that you should pass a result', function(assert: any) {
         assert.contains(null, 'there');
 
         assert.equal(assert.results[0].message, buildMissingIterableMessage(null));
       });
 
-      test('message clearly states that you should pass something to check inclusion for', function(assert) {
+      test('message clearly states that you should pass something to check inclusion for', function(assert: any) {
         assert.contains('hello there' as any, null);
 
         assert.equal(assert.results[0].message, buildMissingElementMessage(null));
@@ -61,7 +64,9 @@ module('(c|notC)ontains', function() {
         // because notContains
         result = !result;
 
-        test(`is ${expected}${result ? ' ' : ' not '}contained in ${actual}?`, function(assert) {
+        test(`is ${expected}${
+          result ? ' ' : ' not '
+        }contained in ${actual}?`, function(assert: any) {
           assert.notContains(actual as any, expected);
 
           assert.equal(assert.results.length, 1);

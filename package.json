@@ -20,12 +20,14 @@
   },
   "scripts": {
     "release": "release-it -n",
-    "build": "rollup -c",
+    "build": "yarn build:js && yarn build:types",
+    "build:js": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint . --ext=js,ts",
     "start": "ember serve",
     "test": "yarn test:unit && yarn test:ember",
-    "test:unit": "qunit --require ts-node/register --require tests/setup.ts lib/**/*-test.ts",
+    "test:unit": "qunit --require @babel/register tests/**/*-test.ts",
     "test:ember": "./smoke-tests/run-tests.sh",
     "prepublish": "rollup -c"
   },
@@ -33,6 +35,13 @@
     "qunit": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@babel/register": "^7.6.2",
+    "@types/ember-qunit": "^3.4.7",
     "@types/jest": "^24.0.20",
     "@types/qunit": "^2.9.0",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
@@ -51,7 +60,8 @@
     "release-it": "^12.4.3",
     "release-it-lerna-changelog": "^1.0.3",
     "rollup": "^1.26.0",
-    "rollup-plugin-typescript2": "^0.25.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4"
   },

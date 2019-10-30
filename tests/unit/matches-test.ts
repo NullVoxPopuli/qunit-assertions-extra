@@ -1,4 +1,5 @@
 import { module, test } from 'qunit';
+import '../../lib/index';
 
 let scenarios = [
   // successes
@@ -15,7 +16,7 @@ module('(c|notC)ontains', function() {
       for (let scenario of scenarios) {
         let [actual, expected, result] = scenario;
 
-        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, function(assert) {
+        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, function(assert: any) {
           assert.matches(actual as string, expected as RegExp);
 
           assert.equal(assert.results.length, 1);
@@ -33,7 +34,7 @@ module('(c|notC)ontains', function() {
         // because notMatches
         result = !result;
 
-        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, function(assert) {
+        test(`does ${expected}${result ? ' ' : ' not '}match ${actual}?`, function(assert: any) {
           assert.notMatches(actual as string, expected as RegExp);
 
           assert.equal(assert.results.length, 1);
