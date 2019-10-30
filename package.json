@@ -22,7 +22,7 @@
     "release": "release-it -n",
     "build": "yarn build:js && yarn build:types",
     "build:js": "rollup -c",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:types": "tsc --emitDeclarationOnly --skipLibCheck",
     "build:js-for-tests": "babel lib --out-dir tmp/tests/lib --extensions '.ts' --plugins transform-es2015-modules-commonjs",
     "build:tests": "babel tests --out-dir tmp/tests/tests --extensions '.ts' --plugins transform-es2015-modules-commonjs",
     "lint:js": "eslint . --ext=js,ts",
