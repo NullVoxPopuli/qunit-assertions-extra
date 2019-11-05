@@ -7,6 +7,8 @@ import { HasIncludes, Maybe } from './assertions/-type-helpers';
 
 declare global {
   interface Assert {
+    /////////////////////////////////////////
+    // string / array / collection assertions
     contains<Actual extends HasIncludes<ExpectedItem>, ExpectedItem>(
       source?: Maybe<Actual>,
       sub?: Maybe<ExpectedItem>,
@@ -20,6 +22,10 @@ declare global {
 
     matches(source?: Maybe<string>, regex?: Maybe<RegExp>, message?: string): void;
     notMatches(source?: Maybe<string>, regex?: Maybe<RegExp>, message?: string): void;
+
+    //////////////////////////
+    // Performance Assertions
+    runsWithinMs(fn: Function, ms: number, message?: string): Promise<void>;
   }
 }
 
