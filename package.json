@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "keywords": [
     "qunit",
+    "qunit-plugin",
     "testing",
     "assertions",
     "assert",
