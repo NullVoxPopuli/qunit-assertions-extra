@@ -32,7 +32,7 @@
     "test": "yarn test:unit && yarn test:ember",
     "test:unit": "rm -rf tmp; yarn build:js-for-tests && yarn build:tests && qunit tmp/tests/**/*-test.js",
     "test:ember": "./smoke-tests/run-tests.sh",
-    "prepublishOnly": "rollup -c"
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "qunit": "^2.0.0"
