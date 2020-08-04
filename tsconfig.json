@@ -3,7 +3,7 @@
     "outDir": "dist",
     "declaration": true,
     "moduleResolution": "node",
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom", "es2020"],
     "target": "es2019",
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
