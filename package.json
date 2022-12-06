@@ -20,7 +20,7 @@
     "test": "tests"
   },
   "scripts": {
-    "release": "release-it -n",
+    "release": "changeset publish",
     "build": "yarn build:js && yarn build:types",
     "build:js": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly --skipLibCheck",
@@ -62,8 +62,6 @@
     "lerna-changelog": "^0.8.0",
     "prettier": "^1.18.2",
     "qunit": "^2.9.3",
-    "release-it": "^12.4.3",
-    "release-it-lerna-changelog": "^1.0.3",
     "rollup": "^1.26.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-node-resolve": "^5.2.0",
@@ -72,29 +70,6 @@
   },
   "engines": {
     "node": "8.* || >= 10.*"
-  },
-  "release-it": {
-    "plugins": {
-      "release-it-lerna-changelog": {
-        "infile": "CHANGELOG.md"
-      }
-    },
-    "git": {
-      "tagName": "v${version}"
-    },
-    "github": {
-      "release": true
-    }
-  },
-  "changelog": {
-    "repo": "simplabs/qunit-dom",
-    "labels": {
-      "breaking": ":boom: Breaking Change",
-      "enhancement": ":rocket: Enhancement",
-      "bug": ":bug: Bug Fix",
-      "documentation": ":memo: Documentation",
-      "internal": ":house: Internal"
-    }
   },
   "volta": {
     "node": "12.13.0",
