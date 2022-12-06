@@ -1,7 +1,14 @@
-name: Tests
+name: CI
 on:
-  pull_request:
-    branches: [master]
+  push:
+    branches:
+      - main
+      - master
+  pull_request: {}
+
+concurrency:
+   group: ci-${{ github.head_ref || github.ref }}
+   cancel-in-progress: true
 
 jobs:
   lint:
@@ -10,16 +17,10 @@ jobs:
     timeout-minutes: 15
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Install
-      run: yarn install
-    - name: Linting
-      run: yarn lint:js
-    - name: Type Safety
-      run: yarn lint:types
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/pnpm
+    - name: Lint
+      run: pnpm lint
 
   test:
     name: Testing
@@ -27,14 +28,10 @@ jobs:
     timeout-minutes: 15
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Install
-      run: yarn install
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/pnpm
     - name: Test
-      run: yarn test
+      run: pnpm test
 
 
   # https://github.com/changesets/action
@@ -53,7 +50,6 @@ jobs:
         with:
           persist-credentials: false
       - uses: ./.github/actions/pnpm
-      - uses: ./.github/actions/download-built-package
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
