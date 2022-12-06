@@ -46,6 +46,8 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-typescript": "^7.6.0",
     "@babel/register": "^7.6.2",
+    "@changesets/changelog-github": "^0.4.7",
+    "@changesets/cli": "^2.25.2",
     "@types/ember-qunit": "^3.4.7",
     "@types/jest": "^24.0.20",
     "@types/qunit": "^2.9.0",
