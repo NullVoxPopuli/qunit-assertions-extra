@@ -1,5 +1,5 @@
 export interface HasIncludes<Item> {
-  includes(item: Item): boolean;
+  includes(item?: Maybe<Item>): boolean;
 }
 
 export type Maybe<T> = null | T;

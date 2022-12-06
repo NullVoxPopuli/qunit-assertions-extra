@@ -9,7 +9,7 @@ export function contains<Actual extends HasIncludes<ExpectedItem>, ExpectedItem>
   let result = false;
   let defaultMessage = `expected ${source} to contain ${sub}`;
 
-  if (sub && source !== null && source !== undefined) {
+  if (source !== null && source !== undefined) {
     result = source.includes(sub);
   }
 
@@ -32,7 +32,7 @@ export function notContains<Actual extends HasIncludes<UnexpectedItem>, Unexpect
   let result = false;
   let defaultMessage = `expected ${source} to not contain ${sub}`;
 
-  if (sub && source !== null && source !== undefined) {
+  if (source !== null && source !== undefined) {
     result = !source.includes(sub);
   }
 
@@ -49,19 +49,11 @@ export function notContains<Actual extends HasIncludes<UnexpectedItem>, Unexpect
 function paramMessageBuilder<A, V>(source?: A, sub?: V): string {
   let resultMessage = '';
 
-  if (!sub) {
-    resultMessage = buildMissingElementMessage(sub);
-  }
-
   if (!source) {
     resultMessage = buildMissingIterableMessage(source);
   }
 
   return resultMessage;
-}
-
-export function buildMissingElementMessage<T>(value: T): string {
-  return `expected an element to check for inclusion. Received: ${value}`;
 }
 
 export function buildMissingIterableMessage<T>(value: T): string {

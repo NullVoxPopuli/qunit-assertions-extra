@@ -1,11 +1,7 @@
 import { module, test } from 'qunit';
 import '../../lib/index';
 import { assertFor, FakeAssert } from '../helpers';
-import {
-  buildMissingIterableMessage,
-  buildMissingElementMessage,
-  notContains,
-} from '../../lib/assertions/contains';
+import { buildMissingIterableMessage, notContains } from '../../lib/assertions/contains';
 
 type Scenario = [string | string[] | number[], string | number];
 
@@ -14,6 +10,7 @@ let scenarios: Scenario[] = [
   [['hello'], 'there'],
   [['hello', 'there'], 'general'],
   [[1, 4], 5],
+  [['hello', 'there'], ''],
 ];
 
 module('notContains', function() {
@@ -60,12 +57,6 @@ module('notContains', function() {
       fakeAssert.notContains(null, 'there');
 
       assert.equal(fakeAssert.results[0].message, buildMissingIterableMessage(null));
-    });
-
-    test('message clearly states that you should pass something to check inclusion for', function(assert) {
-      fakeAssert.notContains('hello there' as any, null);
-
-      assert.equal(fakeAssert.results[0].message, buildMissingElementMessage(null));
     });
   });
 });
