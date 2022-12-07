@@ -1,32 +1,36 @@
-import { module, test } from 'qunit';
 import '../../lib/index';
 
-import { assertFor, FakeAssert } from '../helpers';
+import { module, test } from 'qunit';
+
 import { notMatches } from '../../lib/assertions/matches';
+import { assertFor } from '../helpers';
+
+import type { FakeAssert } from '../helpers';
 
 type Scenario = [string, RegExp];
+
 let scenarios: Scenario[] = [
   ['hello', /there/],
   ['hello there', /hello$/],
 ];
 
-module('notMatches', function() {
+module('notMatches', function () {
   for (let scenario of scenarios) {
     let [actual, expected] = scenario;
 
-    module(`assert.notMatches("${actual}", ${expected})`, function() {
-      test(`integration`, function(assert) {
+    module(`assert.notMatches("${actual}", ${expected})`, function () {
+      test(`integration`, function (assert) {
         assert.notMatches(actual, expected);
       });
 
-      module('result', function(hooks) {
+      module('result', function (hooks) {
         let fakeAssert: FakeAssert;
 
-        hooks.beforeEach(function() {
+        hooks.beforeEach(function () {
           fakeAssert = assertFor(notMatches);
         });
 
-        test(`does ${expected} not match ${actual}?`, function(assert) {
+        test(`does ${expected} not match ${actual}?`, function (assert) {
           fakeAssert.notMatches(actual, expected);
 
           assert.equal(fakeAssert.results.length, 1);

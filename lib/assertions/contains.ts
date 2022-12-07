@@ -1,4 +1,4 @@
-import { HasIncludes, Maybe } from './-type-helpers';
+import type { HasIncludes, Maybe } from './-type-helpers';
 
 export function contains<Actual extends HasIncludes<ExpectedItem>, ExpectedItem>(
   this: Assert,

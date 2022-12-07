@@ -10,7 +10,7 @@ export function assertFor(assertionFn: Function) {
 
   assert[assertionFn.name] = assertionFn;
 
-  return (assert as any) as Assert & FakeAssert;
+  return assert as any as Assert & FakeAssert;
 }
 
 class BareBonesResultCollector {

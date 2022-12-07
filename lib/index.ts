@@ -3,7 +3,7 @@
 import { contains, notContains } from './assertions/contains';
 import { matches, notMatches } from './assertions/matches';
 
-import { HasIncludes, Maybe } from './assertions/-type-helpers';
+import type { HasIncludes, Maybe } from './assertions/-type-helpers';
 
 declare global {
   interface Assert {
