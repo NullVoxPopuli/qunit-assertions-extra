@@ -5,7 +5,10 @@ import { assertFor, FakeAssert } from '../helpers';
 import { notMatches } from '../../lib/assertions/matches';
 
 type Scenario = [string, RegExp];
-let scenarios: Scenario[] = [['hello', /there/], ['hello there', /hello$/]];
+let scenarios: Scenario[] = [
+  ['hello', /there/],
+  ['hello there', /hello$/],
+];
 
 module('notMatches', function() {
   for (let scenario of scenarios) {

@@ -5,7 +5,11 @@ import { assertFor, FakeAssert } from '../helpers';
 import { matches } from '../../lib/assertions/matches';
 
 type Scenario = [string, RegExp];
-let scenarios: Scenario[] = [['hello', /hel/], ['hello', /^he/], ['hello there', /\w there/]];
+let scenarios: Scenario[] = [
+  ['hello', /hel/],
+  ['hello', /^he/],
+  ['hello there', /\w there/],
+];
 
 module('matches', function() {
   for (let scenario of scenarios) {
