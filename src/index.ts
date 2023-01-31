@@ -1,9 +1,14 @@
-/* global QUnit */
-
 import { contains, notContains } from './assertions/contains.js';
 import { matches, notMatches } from './assertions/matches.js';
 
 import type { HasIncludes, Maybe } from './assertions/-type-helpers.js';
+
+export function setup(assert: Assert) {
+  assert.contains = contains;
+  assert.notContains = notContains;
+  assert.matches = matches;
+  assert.notMatches = notMatches;
+}
 
 declare global {
   interface Assert {
@@ -22,8 +27,3 @@ declare global {
     notMatches(source?: Maybe<string>, regex?: Maybe<RegExp>, message?: string): void;
   }
 }
-
-QUnit.assert.contains = contains;
-QUnit.assert.notContains = notContains;
-QUnit.assert.matches = matches;
-QUnit.assert.notMatches = notMatches;

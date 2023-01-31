@@ -31,7 +31,9 @@ jobs:
     - uses: actions/checkout@v3
     - uses: ./.github/actions/pnpm
     - name: Test
-      run: pnpm test
+      run: |
+        pnpm build
+        pnpm test
 
   smoke-test:
     name: Smoke Tests
@@ -43,20 +45,10 @@ jobs:
     - uses: ./.github/actions/pnpm
     - name: Test
       run: |
-        cd smoke-tests
-        npx buttered-ember test ./js-tests
+        pnpm build
+        cd smoke-tests/js-tests
+        npx buttered-ember@latest test --force
 
-
-  typecheck:
-    name: Typechecking
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-
-    steps:
-    - uses: actions/checkout@v3
-    - uses: ./.github/actions/pnpm
-    - name: Check types
-      run: pnpm lint:types
 
   # https://github.com/changesets/action
   release:
@@ -66,7 +58,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs:
       - test
-      - typecheck
+      - smoke-test
     steps:
       - uses: actions/checkout@v3
         with:

@@ -1,3 +1,5 @@
+import { setup } from 'qunit-assertions-extra';
+
 interface Result<Actual = unknown, Expected = unknown> {
   result: boolean;
   actual: Actual;
@@ -5,12 +7,12 @@ interface Result<Actual = unknown, Expected = unknown> {
   message: string;
 }
 
-export function assertFor(assertionFn: Function) {
-  let assert = new BareBonesResultCollector();
+export function buildAssert() {
+  let assert = new BareBonesResultCollector() as unknown as Assert;
 
-  assert[assertionFn.name] = assertionFn;
+  setup(assert);
 
-  return assert as any as Assert & FakeAssert;
+  return assert as unknown as Assert & FakeAssert;
 }
 
 class BareBonesResultCollector {

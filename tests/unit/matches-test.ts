@@ -1,13 +1,13 @@
-import '../../src/index.js';
+// import { module, test } from 'qunit';
+import QUnit from 'qunit';
 
-import { module, test } from 'qunit';
-
-import { matches } from '../../src/assertions/matches.js';
-import { assertFor } from '../helpers.js';
+import { buildAssert } from '../helpers.js';
 
 import type { FakeAssert } from '../helpers.js';
 
 type Scenario = [string, RegExp];
+
+const { module, test } = QUnit;
 
 let scenarios: Scenario[] = [
   ['hello', /hel/],
@@ -28,15 +28,15 @@ module('matches', function () {
         let fakeAssert: FakeAssert;
 
         hooks.beforeEach(function () {
-          fakeAssert = assertFor(matches);
+          fakeAssert = buildAssert();
         });
 
         test(`does ${expected} match ${actual}?`, function (assert) {
           fakeAssert.matches(actual, expected);
 
           assert.equal(fakeAssert.results.length, 1);
-          assert.contains(fakeAssert.results[0].message, `${expected}`);
-          assert.contains(fakeAssert.results[0].message, `${actual}`);
+          assert.contains(fakeAssert.results?.[0]?.message, `${expected}`);
+          assert.contains(fakeAssert.results?.[0]?.message, `${actual}`);
         });
       });
     });

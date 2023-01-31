@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "qunit-assertions-extra": "workspace:*"
+  }
+}
