@@ -1,9 +1,9 @@
 /* global QUnit */
 
-import { contains, notContains } from './assertions/contains';
-import { matches, notMatches } from './assertions/matches';
+import { contains, notContains } from './assertions/contains.js';
+import { matches, notMatches } from './assertions/matches.js';
 
-import type { HasIncludes, Maybe } from './assertions/-type-helpers';
+import type { HasIncludes, Maybe } from './assertions/-type-helpers.js';
 
 declare global {
   interface Assert {

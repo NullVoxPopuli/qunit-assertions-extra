@@ -1,4 +1,4 @@
-import type { HasIncludes, Maybe } from './-type-helpers';
+import type { HasIncludes, Maybe } from './-type-helpers.js';
 
 export function contains<Actual extends HasIncludes<ExpectedItem>, ExpectedItem>(
   this: Assert,
@@ -46,7 +46,7 @@ export function notContains<Actual extends HasIncludes<UnexpectedItem>, Unexpect
   });
 }
 
-function paramMessageBuilder<A, V>(source?: A, sub?: V): string {
+function paramMessageBuilder<A, V>(source?: A, _sub?: V): string {
   let resultMessage = '';
 
   if (!source) {

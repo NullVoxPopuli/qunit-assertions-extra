@@ -1,11 +1,11 @@
-import '../../lib/index';
+import '../../src/index.js';
 
 import { module, test } from 'qunit';
 
-import { buildMissingIterableMessage, notContains } from '../../lib/assertions/contains';
-import { assertFor } from '../helpers';
+import { buildMissingIterableMessage, notContains } from '../../src/assertions/contains.js';
+import { assertFor } from '../helpers.js';
 
-import type { FakeAssert } from '../helpers';
+import type { FakeAssert } from '../helpers.js';
 
 type Scenario = [string | string[] | number[], string | number];
 

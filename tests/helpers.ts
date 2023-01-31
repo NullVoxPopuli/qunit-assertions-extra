@@ -1,4 +1,4 @@
-interface Result<Actual = any, Expected = any> {
+interface Result<Actual = unknown, Expected = unknown> {
   result: boolean;
   actual: Actual;
   expected: Expected;

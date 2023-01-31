@@ -1,11 +1,11 @@
-import '../../lib/index';
+import '../../src/index.js';
 
 import { module, test } from 'qunit';
 
-import { matches } from '../../lib/assertions/matches';
-import { assertFor } from '../helpers';
+import { matches } from '../../src/assertions/matches.js';
+import { assertFor } from '../helpers.js';
 
-import type { FakeAssert } from '../helpers';
+import type { FakeAssert } from '../helpers.js';
 
 type Scenario = [string, RegExp];
 

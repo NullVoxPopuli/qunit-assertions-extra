@@ -1,4 +1,4 @@
-import type { Maybe } from './-type-helpers';
+import type { Maybe } from './-type-helpers.js';
 
 export function matches(
   this: Assert,

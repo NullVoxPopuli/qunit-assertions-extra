@@ -2,4 +2,4 @@
 
 const { configs } = require('@nullvoxpopuli/eslint-configs');
 
-module.exports = configs.nodeTS();
+module.exports = configs.crossPlatform();

@@ -15,7 +15,7 @@
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": false
   },
-  "include": ["lib/*", "lib/**/*"],
+  "include": ["src/*", "src/**/*"],
   "exclude": ["__tests__"],
   "types": ["qunit"]
 }
