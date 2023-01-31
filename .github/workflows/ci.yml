@@ -33,6 +33,20 @@ jobs:
     - name: Test
       run: pnpm test
 
+  smoke-test:
+    name: Smoke Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/pnpm
+    - name: Test
+      run: |
+        cd smoke-tests
+        npx buttered-ember test ./js-tests
+
+
   typecheck:
     name: Typechecking
     runs-on: ubuntu-latest

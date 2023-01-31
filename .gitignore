@@ -1,9 +1,9 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist/
+dist/
 /tmp/
-/lib/**/*.d.ts
+src/**/*.d.ts
 
 
 # dependencies
@@ -21,7 +21,3 @@ npm-debug.log*
 testem.log
 yarn-error.log
 
-# test files
-/tests/fixtures/**/yarn.lock
-/tests/fixtures/**/node_modules/
-/tests/fixtures/**/dist/
