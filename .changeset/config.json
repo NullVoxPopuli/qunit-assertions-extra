@@ -4,10 +4,7 @@
     "overall config docs": "https://github.com/changesets/changesets/blob/main/docs/config-file-options.md",
     "changelog customization": "https://github.com/changesets/changesets/blob/main/docs/modifying-changelog-format.md"
   },
-  "changelog": [
-    "@changesets/changelog-github",
-    { "repo": "NullVoxPopuli/qunit-assertions-extra" }
-  ],
+  "changelog": ["@changesets/changelog-github", { "repo": "NullVoxPopuli/qunit-assertions-extra" }],
   "commit": false,
   "fixed": [],
   "linked": [],

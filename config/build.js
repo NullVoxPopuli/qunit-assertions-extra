@@ -1,11 +1,9 @@
-import * as esbuild from 'esbuild'
+import * as esbuild from 'esbuild';
 import fs from 'node:fs/promises';
 
 let packageJsonFile = await fs.readFile('./package.json');
 let packageJson = JSON.parse(packageJsonFile);
-let externals = [
-...Object.keys(packageJson.peerDependencies)
-];
+let externals = [...Object.keys(packageJson.peerDependencies)];
 
 await esbuild.build({
   entryPoints: ['./src/index.ts'],

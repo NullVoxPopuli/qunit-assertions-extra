@@ -4,10 +4,12 @@
   "description": "Collection of helpful assertions for use with qunit",
   "browser": "dist/esm/index.js",
   "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.js",
+      "types": "dist/types/index.d.ts"
     }
   },
   "type": "module",
@@ -25,7 +27,8 @@
   "private": false,
   "scripts": {
     "release": "changeset publish",
-    "build": "yarn build:js && yarn build:types",
+    "build": "rm -rf dist; yarn build:js && yarn build:types",
+    "build:js": "node ./config/build.js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js-for-tests": "babel lib --out-dir tmp/tests/lib --extensions '.ts' --plugins transform-es2015-modules-commonjs",
     "build:tests": "babel tests --out-dir tmp/tests/tests --extensions '.ts' --plugins transform-es2015-modules-commonjs",
