@@ -10,6 +10,7 @@ await esbuild.build({
   bundle: true,
   outfile: 'dist/esm/index.js',
   sourcemap: true,
+  platform: 'browser',
   format: 'esm',
   external: externals,
 });
@@ -19,6 +20,7 @@ await esbuild.build({
   bundle: true,
   outfile: 'dist/cjs/index.js',
   sourcemap: true,
+  platform: 'node',
   format: 'cjs',
   external: externals,
 });
