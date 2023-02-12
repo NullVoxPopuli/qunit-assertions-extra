@@ -1,6 +1,6 @@
 {
   "name": "qunit-assertions-extra",
-  "version": "0.8.5",
+  "version": "1.0.0",
   "description": "Collection of helpful assertions for use with qunit",
   "browser": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
