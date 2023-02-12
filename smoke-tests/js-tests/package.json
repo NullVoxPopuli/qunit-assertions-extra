@@ -1,4 +1,5 @@
 {
+  "name": "smoke-tests_js-test",
   "dependencies": {
     "qunit-assertions-extra": "workspace:*"
   }
