@@ -37,7 +37,7 @@
   "scripts": {
     "release": "pnpm build && changeset publish",
     "build": "rm -rf dist; yarn build:js && yarn build:types",
-    "build:js": "node ./config/build.js",
+    "build:js": "node ./config/build.mjs",
     "build:types": "tsc --emitDeclarationOnly",
     "lint": "concurrently npm:lint:*",
     "lint:js": "eslint . --ext=js,ts",
