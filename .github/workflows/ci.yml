@@ -1,0 +1,75 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request: {}
+
+concurrency:
+   group: ci-${{ github.head_ref || github.ref }}
+   cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/pnpm
+    - name: Lint
+      run: pnpm lint
+
+  test:
+    name: Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/pnpm
+    - name: Test
+      run: |
+        pnpm build
+        pnpm test
+
+  smoke-test:
+    name: Smoke Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/pnpm
+    - name: Test
+      run: |
+        pnpm build
+        cd smoke-tests/js-tests
+        npx buttered-ember@latest test --force
+
+
+  # https://github.com/changesets/action
+  release:
+    name: Release
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs:
+      - test
+      - smoke-test
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pnpm
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "dist/types",
     "declaration": true,
     "moduleResolution": "node",
     "lib": ["esnext"],
@@ -15,7 +15,7 @@
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": false
   },
-  "include": ["lib/*", "lib/**/*"],
+  "include": ["src/*", "src/**/*"],
   "exclude": ["__tests__"],
   "types": ["qunit"]
 }

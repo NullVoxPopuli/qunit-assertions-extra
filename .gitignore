@@ -1,27 +1,22 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist/
-/tmp/
-/lib/**/*.d.ts
+dist/
+tmp/
+src/**/*.d.ts
 
 
 # dependencies
-/bower_components/
-/node_modules/
+node_modules/
 
 # misc
 /.env*
 /.pnp*
 /.sass-cache
 /connect.lock
-/coverage/
+coverage/
 /libpeerconnection.log
 npm-debug.log*
 testem.log
 yarn-error.log
 
-# test files
-/tests/fixtures/**/yarn.lock
-/tests/fixtures/**/node_modules/
-/tests/fixtures/**/dist/

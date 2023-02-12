@@ -2,7 +2,22 @@
   "name": "qunit-assertions-extra",
   "version": "0.8.5",
   "description": "Collection of helpful assertions for use with qunit",
-  "main": "dist/index.js",
+  "browser": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": "./dist/esm/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/types/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "qunit",
     "qunit-plugin",
@@ -15,89 +30,55 @@
   "license": "MIT",
   "author": "NullVoxPopuli",
   "private": false,
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "scripts": {
-    "release": "release-it -n",
-    "build": "yarn build:js && yarn build:types",
-    "build:js": "rollup -c",
-    "build:types": "tsc --emitDeclarationOnly --skipLibCheck",
-    "build:js-for-tests": "babel lib --out-dir tmp/tests/lib --extensions '.ts' --plugins transform-es2015-modules-commonjs",
-    "build:tests": "babel tests --out-dir tmp/tests/tests --extensions '.ts' --plugins transform-es2015-modules-commonjs",
+    "release": "pnpm build && changeset publish",
+    "build": "rm -rf dist; yarn build:js && yarn build:types",
+    "build:js": "node ./config/build.mjs",
+    "build:types": "tsc --emitDeclarationOnly",
+    "lint": "concurrently npm:lint:*",
     "lint:js": "eslint . --ext=js,ts",
     "lint:types": "tsc --noEmit --skipLibCheck",
+    "lint:format": "prettier -c .",
+    "format": "prettier -w .",
     "start": "ember serve",
-    "test": "yarn test:unit && yarn test:ember",
-    "test:unit": "rm -rf tmp; yarn build:js-for-tests && yarn build:tests && qunit tmp/tests/**/*-test.js",
-    "test:ember": "./smoke-tests/run-tests.sh",
-    "prepublishOnly": "yarn build"
+    "test": "cd ./tests && pnpm test"
   },
   "peerDependencies": {
     "qunit": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
+    "@babel/core": "^7.20.12",
+    "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-typescript": "^7.6.0",
     "@babel/register": "^7.6.2",
-    "@types/ember-qunit": "^3.4.7",
-    "@types/jest": "^24.0.20",
+    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/cli": "^2.26.0",
+    "@nullvoxpopuli/eslint-configs": "^3.1.1",
+    "@types/jest": "^29.2.4",
+    "@types/node": "^18.11.11",
     "@types/qunit": "^2.9.0",
-    "@typescript-eslint/eslint-plugin": "^2.6.0",
-    "@typescript-eslint/parser": "^2.6.0",
-    "babel-eslint": "^10.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
     "babel-preset-env": "^1.6.0",
-    "eslint": "^6.6.0",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-plugin-ember": "^7.1.0",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "execa": "^3.2.0",
-    "lerna-changelog": "^0.8.0",
-    "prettier": "^1.18.2",
-    "qunit": "^2.9.3",
-    "release-it": "^12.4.3",
-    "release-it-lerna-changelog": "^1.0.3",
-    "rollup": "^1.26.0",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "ts-node": "^8.4.1",
-    "typescript": "^3.6.4"
-  },
-  "engines": {
-    "node": "8.* || >= 10.*"
-  },
-  "release-it": {
-    "plugins": {
-      "release-it-lerna-changelog": {
-        "infile": "CHANGELOG.md"
-      }
-    },
-    "git": {
-      "tagName": "v${version}"
-    },
-    "github": {
-      "release": true
-    }
-  },
-  "changelog": {
-    "repo": "simplabs/qunit-dom",
-    "labels": {
-      "breaking": ":boom: Breaking Change",
-      "enhancement": ":rocket: Enhancement",
-      "bug": ":bug: Bug Fix",
-      "documentation": ":memo: Documentation",
-      "internal": ":house: Internal"
-    }
+    "concurrently": "^7.6.0",
+    "esbuild": "^0.17.5",
+    "eslint": "^8.33.0",
+    "eslint-plugin-ember": "^11.4.5",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-qunit": "^7.3.4",
+    "execa": "^6.1.0",
+    "prettier": "^2.8.3",
+    "qunit": "^2.19.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5",
+    "vitest": "^0.28.3"
   },
   "volta": {
-    "node": "12.13.0",
-    "yarn": "1.19.1"
+    "node": "18.12.1"
   }
 }
