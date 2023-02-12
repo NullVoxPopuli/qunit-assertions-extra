@@ -10,5 +10,5 @@
   "linked": [],
   "access": "public",
   "baseBranch": "main",
-  "ignore": []
+  "ignore": ["smoke-tests_js-test", "tests"]
 }
