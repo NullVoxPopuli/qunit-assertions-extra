@@ -9,7 +9,11 @@ overrides:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      '@changesets/cli':
+        specifier: ^2.26.0
+        version: 2.26.0
 
   qunit-assertions-extra:
     devDependencies:
