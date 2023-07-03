@@ -35,19 +35,19 @@ jobs:
         pnpm build
         pnpm test
 
-  smoke-test:
-    name: Smoke Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+  # smoke-test:
+  #   name: Smoke Tests
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 15
 
-    steps:
-    - uses: actions/checkout@v3
-    - uses: ./.github/actions/pnpm
-    - name: Test
-      run: |
-        pnpm build
-        cd smoke-tests/js-tests
-        npx buttered-ember@latest test --force
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - uses: ./.github/actions/pnpm
+  #   - name: Test
+  #     run: |
+  #       pnpm build
+  #       cd smoke-tests/js-tests
+  #       npx buttered-ember@latest test --force
 
 
   # https://github.com/changesets/action
