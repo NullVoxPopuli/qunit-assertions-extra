@@ -1,5 +1,11 @@
 # qunit-assertions-extra
 
+## 1.0.3
+
+### Patch Changes
+
+- [`318c31a`](https://github.com/NullVoxPopuli/qunit-assertions-extra/commit/318c31adcf91a3f63f70ea3ab2edf827fede1409) Thanks [@NullVoxPopuli](https://github.com/NullVoxPopuli)! - Publish files
+
 ## 1.0.2
 
 ### Patch Changes
