@@ -1,6 +1,6 @@
 {
   "name": "qunit-assertions-extra",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "Collection of helpful assertions for use with qunit",
   "repository": "https://github.com/NullVoxPopuli/qunit-assertions-extra",
