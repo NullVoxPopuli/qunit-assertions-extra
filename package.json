@@ -6,7 +6,10 @@
   "types": "dist/types/index.d.ts",
   "type": "module",
   "exports": {
-    ".": "./dist/esm/index.js"
+    ".": {
+      "default":"./dist/esm/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
   },
   "typesVersions": {
     "*": {
