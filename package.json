@@ -2,7 +2,7 @@
   "name": "monorepo-root",
   "private": true,
   "scripts": {
-    "release": "changeset publish",
+    "release": "pnpm build && changeset publish",
     "build": "pnpm --filter '*' build",
     "lint": "pnpm --filter '*' lint"
   },
