@@ -1,88 +1,21 @@
 {
-  "name": "qunit-assertions-extra",
-  "version": "1.0.1",
-  "description": "Collection of helpful assertions for use with qunit",
-  "browser": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "type": "module",
-  "exports": {
-    ".": {
-      "default": "./dist/esm/index.js",
-      "types": "./dist/types/index.d.ts"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/types/index.d.ts"
-      ]
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "qunit",
-    "qunit-plugin",
-    "testing",
-    "assertions",
-    "assert",
-    "extra"
-  ],
-  "repository": "https://github.com/NullVoxPopuli/qunit-assertions-extra",
-  "license": "MIT",
-  "author": "NullVoxPopuli",
-  "private": false,
+  "name": "monorepo-root",
+  "private": true,
   "scripts": {
-    "release": "pnpm build && changeset publish",
-    "build": "rm -rf dist; yarn build:js && yarn build:types",
-    "build:js": "node ./config/build.mjs",
-    "build:types": "tsc --emitDeclarationOnly",
-    "lint": "concurrently npm:lint:*",
-    "lint:js": "eslint . --ext=js,ts",
-    "lint:types": "tsc --noEmit --skipLibCheck",
-    "lint:format": "prettier -c .",
-    "format": "prettier -w .",
-    "start": "ember serve",
-    "test": "cd ./tests && pnpm test"
+    "release": "changeset publish",
+    "build": "pnpm --filter '*' build",
+    "lint": "pnpm --filter '*' lint"
   },
-  "peerDependencies": {
-    "qunit": "^2.0.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.20.12",
-    "@babel/eslint-parser": "^7.19.1",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
-    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-typescript": "^7.6.0",
-    "@babel/register": "^7.6.2",
-    "@changesets/changelog-github": "^0.4.8",
-    "@changesets/cli": "^2.26.0",
-    "@nullvoxpopuli/eslint-configs": "^3.1.1",
-    "@types/jest": "^29.2.4",
-    "@types/node": "^18.11.11",
-    "@types/qunit": "^2.9.0",
-    "@typescript-eslint/eslint-plugin": "^5.49.0",
-    "@typescript-eslint/parser": "^5.49.0",
-    "babel-preset-env": "^1.6.0",
-    "concurrently": "^7.6.0",
-    "esbuild": "^0.17.5",
-    "eslint": "^8.33.0",
-    "eslint-plugin-ember": "^11.4.5",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-qunit": "^7.3.4",
-    "execa": "^6.1.0",
-    "prettier": "^2.8.3",
-    "qunit": "^2.19.4",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.5",
-    "vitest": "^0.28.3"
+  "pnpm": {
+    "overrides": {
+      "@types/eslint": "^8.0.0"
+    }
   },
   "volta": {
     "node": "18.12.1",
     "pnpm": "8.6.5"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.0"
   }
 }

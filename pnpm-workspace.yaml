@@ -1,4 +1,4 @@
 packages:
-  - '.'
+  - 'qunit-assertions-extra'
   - 'tests'
   - 'smoke-tests/*'
